@@ -20,9 +20,9 @@ public class Main{
         System.out.println("Account holder's name: " + holderName);
         System.out.println("Account No.- " + Account.accNo(1000));
         System.out.println();
-        System.out.println("Deposited:- " + Account.deposit(initial_deposit));
-        System.out.println("Money withdraw: " + Account.withdraw(out));
-        System.out.println("Balance: " + Account.balance());
+        System.out.println("Deposited:- ₹" + Account.deposit(initial_deposit));
+        System.out.println("Money withdraw: ₹" + Account.withdraw(out));
+        System.out.println("Balance: ₹" + Account.balance());
 
     }
 

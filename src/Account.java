@@ -3,6 +3,7 @@ public class Account {
     public static float initial_deposit;
     public String holderName;
     public int accNo;
+    public static float i_deposit;
     public static float deposit;
     public static float balance;
     public static float withdraw;
@@ -18,8 +19,13 @@ public class Account {
         return ++accNo;
     }
 
-    public static float deposit(float initial_deposit) {
-        deposit = initial_deposit;
+//    public static float init_deposit(float initial_deposit) {
+//        i_deposit = initial_deposit;
+//        return i_deposit;
+//    }
+
+    public static float deposit(float deposit) {
+        deposit = deposit + initial_deposit;
         return deposit;
     }
 
@@ -27,7 +33,7 @@ public class Account {
         balance = deposit;
 
         if(amt > balance) {
-            System.out.println("Your acc has " + balance + " rupees only. Therefore, you can't withdraw " + amt + "rupees.");
+            System.out.println("Your acc has " + balance + " rupees only. Therefore, you can't withdraw " + amt + " rupees.");
         } else {
             withdraw = amt;
         }

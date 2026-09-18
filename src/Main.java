@@ -5,6 +5,8 @@ public class Main{
     public static void main(String[] args) {
         System.out.println("===== BANK ACCOUNT SIMULATION =====");
         Scanner in = new Scanner(System.in);
+
+
         String holderName = "";
         boolean valid = false;
         while(!valid) {
@@ -21,28 +23,9 @@ public class Main{
         }
 
         float initial_deposit = 0;
-        while(true) {
-            try{
-                System.out.print("Enter initial deposit: ");
-                initial_deposit = in.nextFloat();
-                break;
-            } catch(InputMismatchException e) {
-                System.out.println("Invalid input");
-                in.next();
-            }
+        System.out.print("Enter initial deposit: ");
+        initial_deposit = Account.isValidFloat();
 
-        }
-        float out = 0;
-        while(true) {
-            try{
-                System.out.print("Enter withdrawal amount: ");
-                out = in.nextFloat();
-                break;
-            } catch(InputMismatchException e) {
-                System.out.println("Invalid input");
-                in.next();
-            }
-        }
 
         Account acc = new Account(holderName, Account.accNo(1000), Account.deposit(initial_deposit));
         System.out.println();
@@ -59,58 +42,71 @@ public class Main{
 
         float deposit = 0;
         float withdraw = 0;
+        float valid_withdraw = 0;
         boolean run = true;
         while(run) {
-            int choice = in.nextInt();
+            System.out.print("Enter your choice from the menu: ");
+//            int choice = in.nextInt();
+            int choice = Account.isValidInt();
             switch(choice) {
                 case 1 -> {
                     System.out.print("Enter deposit amount: ");
-                    deposit = in.nextFloat();
                     // check validation
+                    deposit = Account.isValidFloat();
+                    while(true){
+                        if(deposit <= 0) {
+                            System.out.print("Invalid deposit amount. Enter valid deposit: ");
+                            deposit = Account.isValidFloat();
+                        } else {
+                            break;
+                        }
+                    }
                     System.out.println("₹" + deposit + " deposited successfully");
+                    Account.deposit(deposit);
                     break;
                 }
                 case 2 -> {
                     System.out.print("Enter withdrawal amount: ");
-                    withdraw = in.nextFloat();
                     // check validation
-                    System.out.println("₹" + withdraw + " withdrawn successfully");
+                    valid_withdraw = Account.isValidFloat();
+                    while(true){
+                        if(valid_withdraw <= 0) {
+                            System.out.print("Invalid withdrawal amount. Enter valid withdrawal amount: ");
+                            valid_withdraw = Account.isValidFloat();
+                        }else break;
+                    }
+                    boolean true_withdraw = Account.withdraw(valid_withdraw);
+                    if(true_withdraw){
+                        System.out.println("₹" + valid_withdraw + " withdrawn successfully");
+                    }
                     break;
                 }
                 case 3 -> {
-                    System.out.println("Current Balance: ₹" + Account.balance);
+                    System.out.println("Current Balance: ₹" + Account.balance());
                     break;
                 }
                 case 4 -> {
                     System.out.println("===== Account Details =====");
                     System.out.println("Account holder's name: " + acc.holderName);
                     System.out.println("Account No.- " + Account.accNo(1000));
-                    System.out.println("Current Balance: ₹" + Account.balance);
+                    System.out.println("Current Balance: ₹" + Account.balance());
                     break;
                 }
                 case 5 -> {
                     System.out.println("===== Transaction History =====");
                     System.out.println("Initial deposit: ₹" + initial_deposit);
-                    System.out.println("Deposit: ₹" + Account.deposit(deposit));
-                    System.out.println("Withdrawal Amount: ₹" + withdraw);
-                    break;
+                    System.out.println("Deposit: ₹" + deposit);
+                    System.out.println("Withdrawal Amount: ₹" + valid_withdraw); // -> needs to be checked later
+//                    break;
                 }
                 case 6 -> {
                     run = false;
                 }
                 default -> {
                     System.out.println("Invalid choice");
-                    in.next();
                 }
             }
         }
-
-
-
-        System.out.println();
-//        System.out.println("Deposited:- ₹" + Account.init_deposit(initial_deposit));
-        System.out.println("Money withdraw: ₹" + Account.withdraw(out));
-        System.out.println("Balance: ₹" + Account.balance());
 
     }
 

@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main{
@@ -27,7 +26,7 @@ public class Main{
         initial_deposit = Account.isValidFloat();
 
 
-        Account acc = new Account(holderName, Account.accNo(1000), Account.deposit(initial_deposit));
+        Account acc = new Account(holderName, initial_deposit);
         System.out.println();
         System.out.println("Account created!");
         System.out.println();
@@ -45,8 +44,8 @@ public class Main{
         float valid_withdraw = 0;
         boolean run = true;
         while(run) {
+            System.out.println();
             System.out.print("Enter your choice from the menu: ");
-//            int choice = in.nextInt();
             int choice = Account.isValidInt();
             switch(choice) {
                 case 1 -> {
@@ -62,7 +61,7 @@ public class Main{
                         }
                     }
                     System.out.println("₹" + deposit + " deposited successfully");
-                    Account.deposit(deposit);
+                    acc.deposit(deposit);
                     break;
                 }
                 case 2 -> {
@@ -75,21 +74,21 @@ public class Main{
                             valid_withdraw = Account.isValidFloat();
                         }else break;
                     }
-                    boolean true_withdraw = Account.withdraw(valid_withdraw);
+                    boolean true_withdraw = acc.withdraw(valid_withdraw);
                     if(true_withdraw){
                         System.out.println("₹" + valid_withdraw + " withdrawn successfully");
                     }
                     break;
                 }
                 case 3 -> {
-                    System.out.println("Current Balance: ₹" + Account.balance());
+                    System.out.println("Current Balance: ₹" + acc.balance());
                     break;
                 }
                 case 4 -> {
                     System.out.println("===== Account Details =====");
                     System.out.println("Account holder's name: " + acc.holderName);
                     System.out.println("Account No.- " + Account.accNo(1000));
-                    System.out.println("Current Balance: ₹" + Account.balance());
+                    System.out.println("Current Balance: ₹" + acc.balance());
                     break;
                 }
                 case 5 -> {

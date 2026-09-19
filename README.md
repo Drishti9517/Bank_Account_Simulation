@@ -54,12 +54,36 @@ The project is being developed step-by-step, with additional validation and impr
 
 Enter account holder name: Drishti Sahu
 Enter initial deposit: 500
-Enter withdrawal amount: 200
 
 Account created!
 
-Account Holder : Drishti Sahu
-Account Number : 1001
-Deposited      : ₹500.00
-Money Withdrawn: ₹200.00
-Balance        : ₹300.00
+===== Bank Menu =====
+1. Deposit
+2. Withdraw
+3. Check Balance
+4. Account Details
+5. Transaction history
+6. Exit
+
+Enter your choice from the menu: 1
+Enter deposit amount: 200
+₹200.0 deposited successfully
+
+Enter your choice from the menu: 2
+Enter withdrawal amount: 100
+₹100.0 withdrawn successfully
+
+Enter your choice from the menu: 3
+Current Balance: ₹600.0
+
+Enter your choice from the menu: 4
+===== Account Details =====
+Account holder's name: Drishti Sahu
+Account No.- 1001
+Current Balance: ₹600.0
+
+Enter your choice from the menu: 5
+===== Transaction History =====
+Initial deposit: ₹500.0
+Deposit: ₹200.0
+Withdrawal Amount: ₹100.0

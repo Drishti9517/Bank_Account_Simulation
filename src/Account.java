@@ -3,50 +3,41 @@ import java.util.Scanner;
 
 public class Account {
 
-    public static float initial_deposit;
-    public String holderName;
-    public int accNo;
-    public static float deposit;
-    public static float c_deposit;
-    public static float balance;
-    public static float withdraw;
+    public  String holderName;
+    public float deposit;
+    public float c_deposit;
+    public float balance;
 
-
-    public Account(String holderName, int accNo, float deposit){
+    public Account(String holderName, float deposit){
         this.holderName = holderName;
-        this.accNo = accNo;
         this.deposit = deposit;
+        this.balance = deposit;
     }
 
     public static int accNo(int accNo) {
         return ++accNo;
     }
-    public static float i_deposit(float initial_deposit) {
-        deposit = initial_deposit;
-        return initial_deposit;
-    }
 
-    public static float deposit(float depo) {
+    public float deposit(float depo) {
         c_deposit = deposit + depo;
         deposit = c_deposit;
+        balance += depo;
         return c_deposit;
     }
 
 
-    public static boolean withdraw(float amt) {
-        balance = c_deposit;
-
+    public boolean withdraw(float amt) {
         if(amt > balance) {
             System.out.println("Your acc has " + balance + " rupees only. Therefore, you can't withdraw " + amt + " rupees.");
             return false;
         } else {
-            withdraw = amt;
+            balance = balance - amt;
         }
         return true;
     }
 
-    public static float balance() {
-        return c_deposit - withdraw;
+    public float balance() {
+        return balance;
     }
 
     static Scanner in = new Scanner(System.in);

@@ -87,3 +87,4 @@ Enter your choice from the menu: 5
 Initial deposit: ₹500.0
 Deposit: ₹200.0
 Withdrawal Amount: ₹100.0
+```
